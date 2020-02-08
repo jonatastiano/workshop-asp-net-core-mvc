@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Servicos;
+using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Controllers
 {
@@ -20,6 +21,19 @@ namespace SalesWebMvc.Controllers
         {
             var lista = _vendedorServico.FindAll();
             return View(lista);
+        }
+
+        public IActionResult Criar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Criar(Vendedor vendedor)
+        {
+            _vendedorServico.Insert(vendedor);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

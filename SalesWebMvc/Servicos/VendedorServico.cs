@@ -19,5 +19,11 @@ namespace SalesWebMvc.Servicos
         {
             return _context.Vendedores.ToList();
         }
+
+        public void Insert(Vendedor obj)
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
+        }
     }
 }
